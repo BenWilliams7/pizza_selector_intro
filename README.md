@@ -20,11 +20,12 @@ Selecting a pizza size and a topping will display a corresponding price.
 |----------|:-----:|:------:|
 | The program will display the pizza size and toppings that are selected | "select Medium" | Medium |
 | The program will capture the values in a constructor | "select Medium Pepperoni" | newPizza(Medium, Pepperoni)|
+| The program will track the number of toppings selected | "select Medium Pepperoni Onions Mushrooms" | 3 |
 | The program will return the value of the pizza| "select Medium Pepperoni"| $15 |
 
 ## Known Bugs
 
-Multiple toppings do not aggregate. If you find others, please contact me at benjarwilliams at gmail dot com.
+The "pizza-selector" file didn't want to be deleted from terminal... Does not affect functionality. If you find an issue, please contact me at benjarwilliams at gmail dot com.
 
 ## Support and contact details
 

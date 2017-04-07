@@ -1,3 +1,7 @@
 #pizza-bottom, #pizza-price {
   display: none;
 };
+
+body {
+  color: tomato;
+}
