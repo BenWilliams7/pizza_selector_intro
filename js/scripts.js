@@ -1,7 +1,8 @@
 // Back-End Logic
-function Pizza(type, size){
+function Pizza(type, size, quant){
   this.pizzaType = type;
   this.pizzaSize = size;
+  this.pizzaTopQuant = quant;
   this.price = 0;
 };
 
@@ -13,19 +14,19 @@ Pizza.prototype.add = function () {
     this.pizzaAddOn += 8;
   } if (this.pizzaSize === 'Extra Large') {
     this.pizzaAddOn += 12;
+  } if (this.pizzaTopQuant === '0') {
+      this.pizzaAddOn += 0;
+  } if (this.pizzaTopQuant === '1') {
+    this.pizzaAddOn += 1;
+  } if (this.pizzaTopQuant === '2') {
+    this.pizzaAddOn += 2;
+  } if (this.pizzaTopQuant === '3') {
+    this.pizzaAddOn += 3;
+  } if (this.pizzaTopQuant === '4') {
+    this.pizzaAddOn += 4;
+  } if (this.pizzaTopQuant === '5') {
+    this.pizzaAddOn += 5;
   }
-  if (this.pizzaType === "Pepperoni") {
-      this.pizzaAddOn += 1;
-  } if (this.pizzaType === "Artichoke") {
-    this.pizzaAddOn += 1;
-  } if (this.pizzaType === "Anchovy") {
-    this.pizzaAddOn += 1;
-  } if (this.pizzaType === "Mushrooms") {
-    this.pizzaAddOn += 1;
-  } if (this.pizzaType === "Onions") {
-    this.pizzaAddOn += 1;
-  }
-  console.log(this.pizzaAddOn);
 };
 
 // Front-End Logic
@@ -39,12 +40,10 @@ $(document).ready(function(){
 
     var pizzaType = $("input:checkbox[name=pizza-type]:checked").val();
     var pizzaSize = $("#pizza-size").val();
-    var newPizza = new Pizza(pizzaType, pizzaSize);
+    var pizzaTopQuant = $("#pizza-top-quant").val();
+    var newPizza = new Pizza(pizzaType, pizzaSize, pizzaTopQuant);
     newPizza.add();
 
-    console.log(newPizza.pizzaType);
-    console.log(newPizza.pizzaSize);
-    console.log(newPizza.price);
     $("#pizza-bottom").append(pizzaSize + "<br>");
     $("#pizza-price").append("$"+newPizza.pizzaAddOn);
     $("#pizza-bottom").show();
