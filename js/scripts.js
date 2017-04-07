@@ -1,14 +1,14 @@
 // Back-End Logic
-function Pizza(){
-  this.pizzaType;
-  this.pizzaSize;
-  this.pizzaCost = 10;
-  this.pizzaAddOn = 0;
+function Pizza(type, size){
+  this.pizzaType = type;
+  this.pizzaSize = size;
+  this.pizzaCost = 0;
+  // this.pizzaAddOn = 10;
   this.price = 0;
 };
 
 Pizza.prototype.add = function () {
-  this.price += this.pizzaAddOn;
+  this.pizzaAddOn = 10;
   if (this.pizzaSize === 'Medium') {
     this.pizzaAddOn += 4;
   } if (this.pizzaSize === 'Large') {
@@ -16,20 +16,18 @@ Pizza.prototype.add = function () {
   } if (this.pizzaSize === 'Extra Large') {
     this.pizzaAddOn += 12;
   }
-
   if (this.pizzaType === "Pepperoni") {
-    this.pizzaAddOn += 1;
-  } if (this.pizzaType === "Artichoke") {
-    this.pizzaAddOn += 1;
-  } if (this.pizzaType === "Anchovy") {
-    this.pizzaAddOn += 1;
-  } if (this.pizzaType === "Vegan") {
-    this.pizzaAddOn += 1;
-  } if (this.pizzaType === "Italian") {
-    this.pizzaAddOn += 1;
-  }
-  // console.log(this.pizzaAddOn);
-  console.log(this.price);
+      this.pizzaAddOn += 1;
+    } if (this.pizzaType === "Artichoke") {
+      this.pizzaAddOn += 1;
+    } if (this.pizzaType === "Anchovy") {
+      this.pizzaAddOn += 1;
+    } if (this.pizzaType === "Mushrooms") {
+      this.pizzaAddOn += 1;
+    } if (this.pizzaType === "Onions") {
+      this.pizzaAddOn += 1;
+    }
+  console.log(this.pizzaAddOn);
 };
 
 // (type [Pepperoni, Artichoke, Anchovy, Vegan, Italian], size [Small, Medium, Large, Extra Large]);
@@ -46,18 +44,20 @@ $(document).ready(function(){
 
     var pizzaType = $("input:checkbox[name=pizza-type]:checked").val();
     var pizzaSize = $("#pizza-size").val();
-
-
+    var pizzaCost = 10;
     var newPizza = new Pizza(pizzaType, pizzaSize, pizzaCost);
-    var pizzaCost = newPizza.add();
     newPizza.add();
+
+
+
     console.log(newPizza.add());
     console.log(newPizza.pizzaType);
     console.log(newPizza.pizzaSize);
-    console.log(newPizza.pizzaAddOn);
+    // console.log(newPizza.pizzaAddOn);
     console.log(newPizza.price);
-    $("#pizza-price").append(pizzaCost + "<br>")
-    $("#pizza-bottom").append(pizzaSize + "<br>")
+    $("#pizza-price").append(pizzaCost + "<br>");
+    $("#pizza-bottom").append(pizzaSize + "<br>");
+    $("#pizza-price").text(newPizza.pizzaAddOn);
     $("#pizza-bottom").show();
     $('#pizza-top').hide();
     $('#pizza-size').hide();
