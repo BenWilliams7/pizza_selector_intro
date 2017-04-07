@@ -1,31 +1,29 @@
 // Back-End Logic
-function Pizza(type, size, quant){
+function Pizza(type, size){
   this.pizzaType = type;
   this.pizzaSize = size;
-  this.pizzaTopQuant = quant;
   this.price = 0;
 };
 
 Pizza.prototype.add = function () {
   this.pizzaAddOn = 10;
+  var numChecked = $("input:checked").length;
   if (this.pizzaSize === 'Medium') {
     this.pizzaAddOn += 4;
   } if (this.pizzaSize === 'Large') {
     this.pizzaAddOn += 8;
   } if (this.pizzaSize === 'Extra Large') {
     this.pizzaAddOn += 12;
-  } if (this.pizzaTopQuant === '0') {
-      this.pizzaAddOn += 0;
-  } if (this.pizzaTopQuant === '1') {
-    this.pizzaAddOn += 1;
-  } if (this.pizzaTopQuant === '2') {
-    this.pizzaAddOn += 2;
-  } if (this.pizzaTopQuant === '3') {
-    this.pizzaAddOn += 3;
-  } if (this.pizzaTopQuant === '4') {
-    this.pizzaAddOn += 4;
-  } if (this.pizzaTopQuant === '5') {
-    this.pizzaAddOn += 5;
+  } if (numChecked === 1) {
+    this.pizzaAddOn += 1
+  }  if (numChecked === 2) {
+      this.pizzaAddOn += 2
+  }  if (numChecked === 3) {
+      this.pizzaAddOn += 3
+  }  if (numChecked === 4) {
+      this.pizzaAddOn += 4
+  }  if (numChecked === 5) {
+      this.pizzaAddOn += 5
   }
 };
 
@@ -40,8 +38,7 @@ $(document).ready(function(){
 
     var pizzaType = $("input:checkbox[name=pizza-type]:checked").val();
     var pizzaSize = $("#pizza-size").val();
-    var pizzaTopQuant = $("#pizza-top-quant").val();
-    var newPizza = new Pizza(pizzaType, pizzaSize, pizzaTopQuant);
+    var newPizza = new Pizza(pizzaType, pizzaSize);
     newPizza.add();
 
     $("#pizza-bottom").append(pizzaSize + "<br>");
